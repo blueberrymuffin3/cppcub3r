@@ -1,0 +1,44 @@
+diff -ur a/control b/control
+--- a/control	2019-02-12 05:26:31.000000000 -0600
++++ b/control	2020-07-03 12:30:50.815637243 -0500
+@@ -4,7 +4,7 @@
+ Architecture: armel
+ Maintainer: Debian Science Team <debian-science-maintainers@lists.alioth.debian.org>
+ Installed-Size: 662
+-Depends: libopencv-calib3d-dev (= 3.2.0+dfsg-6), libopencv-contrib-dev (= 3.2.0+dfsg-6), libopencv-core-dev (= 3.2.0+dfsg-6), libopencv-features2d-dev (= 3.2.0+dfsg-6), libopencv-flann-dev (= 3.2.0+dfsg-6), libopencv-highgui-dev (= 3.2.0+dfsg-6), libopencv-imgcodecs-dev (= 3.2.0+dfsg-6), libopencv-imgproc-dev (= 3.2.0+dfsg-6), libopencv-ml-dev (= 3.2.0+dfsg-6), libopencv-objdetect-dev (= 3.2.0+dfsg-6), libopencv-photo-dev (= 3.2.0+dfsg-6), libopencv-shape-dev (= 3.2.0+dfsg-6), libopencv-stitching-dev (= 3.2.0+dfsg-6), libopencv-superres-dev (= 3.2.0+dfsg-6), libopencv-ts-dev (= 3.2.0+dfsg-6), libopencv-video-dev (= 3.2.0+dfsg-6), libopencv-videoio-dev (= 3.2.0+dfsg-6), libopencv-videostab-dev (= 3.2.0+dfsg-6), libopencv-viz-dev (= 3.2.0+dfsg-6), libopencv3.2-java (= 3.2.0+dfsg-6), pkg-config, libc6 (>= 2.27), libgcc1 (>= 1:3.5), libopencv-calib3d3.2, libopencv-contrib3.2, libopencv-core3.2, libopencv-features2d3.2, libopencv-flann3.2, libopencv-highgui3.2, libopencv-imgcodecs3.2, libopencv-imgproc3.2, libopencv-ml3.2, libopencv-objdetect3.2, libopencv-videoio3.2, libstdc++6 (>= 5.2), libtbb2
++Depends: libopencv-calib3d-dev (= 3.2.0+dfsg-6), libopencv-contrib-dev (= 3.2.0+dfsg-6), libopencv-core-dev (= 3.2.0+dfsg-6), libopencv-features2d-dev (= 3.2.0+dfsg-6), libopencv-flann-dev (= 3.2.0+dfsg-6), libopencv-highgui-dev (= 3.2.0+dfsg-6), libopencv-imgcodecs-dev (= 3.2.0+dfsg-6), libopencv-imgproc-dev (= 3.2.0+dfsg-6), libopencv-ml-dev (= 3.2.0+dfsg-6), libopencv-objdetect-dev (= 3.2.0+dfsg-6), libopencv-photo-dev (= 3.2.0+dfsg-6), libopencv-shape-dev (= 3.2.0+dfsg-6), libopencv-stitching-dev (= 3.2.0+dfsg-6), libopencv-superres-dev (= 3.2.0+dfsg-6), libopencv-ts-dev (= 3.2.0+dfsg-6), libopencv-video-dev (= 3.2.0+dfsg-6), libopencv-videoio-dev (= 3.2.0+dfsg-6), libopencv-videostab-dev (= 3.2.0+dfsg-6), libopencv-viz-dev (= 3.2.0+dfsg-6), pkg-config, libc6 (>= 2.27), libgcc1 (>= 1:3.5), libopencv-calib3d3.2, libopencv-contrib3.2, libopencv-core3.2, libopencv-features2d3.2, libopencv-flann3.2, libopencv-highgui3.2, libopencv-imgcodecs3.2, libopencv-imgproc3.2, libopencv-ml3.2, libopencv-objdetect3.2, libopencv-videoio3.2, libstdc++6 (>= 5.2), libtbb2
+ Recommends: opencv-data
+ Suggests: opencv-doc
+ Conflicts: libcv-dev, libcvaux-dev, libhighgui-dev
+diff -ur a/usr/share/OpenCV/OpenCVModules-release.cmake b/usr/share/OpenCV/OpenCVModules-release.cmake
+--- a/usr/share/OpenCV/OpenCVModules-release.cmake	2019-02-12 05:26:31.000000000 -0600
++++ b/usr/share/OpenCV/OpenCVModules-release.cmake	2020-07-03 12:31:33.392514921 -0500
+@@ -461,17 +461,17 @@
+ list(APPEND _IMPORT_CHECK_TARGETS opencv_structured_light )
+ list(APPEND _IMPORT_CHECK_FILES_FOR_opencv_structured_light "${_IMPORT_PREFIX}/lib/arm-linux-gnueabi/libopencv_structured_light.so.3.2.0" )
+ 
+-# Import target "opencv_java" for configuration "Release"
+-set_property(TARGET opencv_java APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
+-set_target_properties(opencv_java PROPERTIES
+-  IMPORTED_LINK_DEPENDENT_LIBRARIES_RELEASE "opencv_core;opencv_flann;opencv_imgproc;opencv_ml;opencv_photo;opencv_video;opencv_viz;opencv_imgcodecs;opencv_videoio;opencv_highgui;opencv_objdetect;opencv_bioinspired;opencv_features2d;opencv_calib3d;opencv_rgbd;opencv_aruco;opencv_phase_unwrapping;opencv_structured_light"
+-  IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE ""
+-  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/jni/libopencv_java320.so"
+-  IMPORTED_SONAME_RELEASE "libopencv_java320.so"
+-  )
+-
+-list(APPEND _IMPORT_CHECK_TARGETS opencv_java )
+-list(APPEND _IMPORT_CHECK_FILES_FOR_opencv_java "${_IMPORT_PREFIX}/lib/jni/libopencv_java320.so" )
++# # Import target "opencv_java" for configuration "Release"
++# set_property(TARGET opencv_java APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
++# set_target_properties(opencv_java PROPERTIES
++#   IMPORTED_LINK_DEPENDENT_LIBRARIES_RELEASE "opencv_core;opencv_flann;opencv_imgproc;opencv_ml;opencv_photo;opencv_video;opencv_viz;opencv_imgcodecs;opencv_videoio;opencv_highgui;opencv_objdetect;opencv_bioinspired;opencv_features2d;opencv_calib3d;opencv_rgbd;opencv_aruco;opencv_phase_unwrapping;opencv_structured_light"
++#   IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE ""
++#   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/jni/libopencv_java320.so"
++#   IMPORTED_SONAME_RELEASE "libopencv_java320.so"
++#   )
++# 
++# list(APPEND _IMPORT_CHECK_TARGETS opencv_java )
++# list(APPEND _IMPORT_CHECK_FILES_FOR_opencv_java "${_IMPORT_PREFIX}/lib/jni/libopencv_java320.so" )
+ 
+ # Commands beyond this point should not need to know the version.
+ set(CMAKE_IMPORT_FILE_VERSION)

@@ -1,0 +1,6 @@
+[submodule "ev3dev-lang-cpp"]
+	path = ev3dev-lang-cpp
+	url = https://github.com/ddemidov/ev3dev-lang-cpp.git
+[submodule "kociemba"]
+	path = kociemba
+	url = https://github.com/muodov/kociemba.git
