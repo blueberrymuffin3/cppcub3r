@@ -10,7 +10,6 @@ BINARY_PATH_HOST := ./${BINARY_NAME}
 
 BUILD_DIR_TRACKER := ${BUILD_DIR}/.build_dir_docker
 DOCKER_IMAGE_TRACKER := ${BUILD_DIR}/.docker_image_tracker_${DOCKER_TAG}
-UPLOAD_TRACKER := ${BUILD_DIR}/.upload_tracker_${HOST}
 
 .PHONY: all build upload docker_image run clean
 
@@ -21,7 +20,10 @@ ${BUILD_DIR_TRACKER}:
 	touch ${BUILD_DIR_TRACKER}
 
 build: ${BINARY_PATH_BUILD}
-upload: ${UPLOAD_TRACKER}
+
+upload: ${BINARY_PATH_BUILD}
+	scp ${BINARY_PATH_BUILD} ${HOST}:${BINARY_PATH_HOST}
+
 docker_image: ${DOCKER_IMAGE_TRACKER}
 
 run: upload
@@ -34,10 +36,6 @@ clean:
 ${BINARY_PATH_BUILD}: ${BUILD_DIR_TRACKER} ${DOCKER_IMAGE_TRACKER} ${SRC_DIR}/* CMakeLists.txt
 	@echo "Starting Docker Container..."
 	docker run --rm -it -v `pwd`:/home/compiler/src ${DOCKER_TAG}
-
-${UPLOAD_TRACKER}: ${BINARY_PATH_BUILD}
-	scp ${BINARY_PATH_BUILD} ${HOST}:${BINARY_PATH_HOST}
-	touch ${UPLOAD_TRACKER}
 
 ${DOCKER_IMAGE_TRACKER}: ${BUILD_DIR_TRACKER} docker/*
 	docker build docker -t ${DOCKER_TAG}
