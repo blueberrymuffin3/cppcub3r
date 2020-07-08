@@ -3,4 +3,4 @@
 	url = https://github.com/ddemidov/ev3dev-lang-cpp.git
 [submodule "kociemba"]
 	path = kociemba
-	url = https://github.com/muodov/kociemba.git
+	url = https://github.com/bmxguy100/kociemba.git
