@@ -33,8 +33,10 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
         ninja-build \
         libboost-log1.67-dev:armel
 
+COPY --from=alpine /root/libopencv-dev-modified.deb /var/cache/apt/libopencv-dev.deb
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends \
-        libopencv-dev
+        /var/cache/apt/libopencv-dev.deb
 
 USER compiler
 
